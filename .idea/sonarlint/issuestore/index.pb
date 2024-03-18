@@ -9,8 +9,6 @@ X
 (FirstDemo/src/main/java/org/tdd/App.java,d/8/d8911f957051de68727a644d049d8f4341361d4e
 \
 ,FirstDemo/src/test/java/org/tdd/AppTest.java,2/7/27826b698654dc11cc2f148fa16422bf825e2cc9
-b
-2FirstDemo/src/test/java/org/tdd/FirstDemoTest.java,3/0/30bc6b2a31505bd6a91e5fec922d50b00eeeadb9
 ]
 -FirstDemo/src/test/java/org/tdd/ArgsTest.java,6/e/6e277e4565566d06efe7f29d828e7c7dcfcc0c6b
 [
