@@ -34,18 +34,18 @@ public class ArgsTest {
 
     // 解析 bool，快速失败以及快速成功
     @Test
-    public void testParseBoolFalseIfPresent() {
+    void testParseBoolFalseIfPresent() {
         BoolRecord parse = Args.parse(BoolRecord.class, "-l");
         assertTrue(parse.logging());
     }
 
     // 上一个测试的相反 case
     @Test
-    public void testParseBoolFalseIfNotPresent() {
+    void testParseBoolFalseIfNotPresent() {
         BoolRecord parse = Args.parse(BoolRecord.class);
         assertFalse(parse.logging());
     }
-    static record BoolRecord(@Option("-l") boolean logging) {
+    record BoolRecord(@Option("-l") boolean logging) {
     }
 
 
@@ -56,6 +56,6 @@ public class ArgsTest {
         OptionRecord optionRecord = Args. parse(OptionRecord.class, "-l");
     }
 
-    static record OptionRecord(@Option("-l") boolean logging, @Option("-p") int port, @Option("-d") String directory) {
+    record OptionRecord(@Option("-l") boolean logging, @Option("-p") int port, @Option("-d") String directory) {
     }
 }
