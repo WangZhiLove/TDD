@@ -1,6 +1,5 @@
 package org.tdd;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,17 +44,38 @@ public class ArgsTest {
         BoolRecord parse = Args.parse(BoolRecord.class);
         assertFalse(parse.logging());
     }
-    record BoolRecord(@Option("-l") boolean logging) {
+    static record BoolRecord(@Option("l") boolean logging) {
+    }
+
+    // 解析 int
+    @Test
+    void testParseIntIfPresent() {
+        IntRecord parse = Args.parse(IntRecord.class, "-p", "8080");
+        assertEquals(8080, parse.port());
+    }
+    static record IntRecord(@Option("p") int port) {
+    }
+
+
+    // 解析 int
+    @Test
+    void testParseStringIfPresent() {
+        StringRecord parse = Args.parse(StringRecord.class, "-d", "/user/logs");
+        assertEquals("/user/logs", parse.directory());
+    }
+    static record StringRecord(@Option("d") String directory) {
     }
 
 
     @Test
-    @Disabled
-    void testFirstDemo() {
+    void testMultiOption() {
         // 解析命令行参数
-        OptionRecord optionRecord = Args. parse(OptionRecord.class, "-l");
+        MultiRecord optionRecord = Args. parse(MultiRecord.class, "-l", "-p", "8080", "-d", "/user/logs");
+        assertTrue(optionRecord.logging());
+        assertEquals(8080, optionRecord.port());
+        assertEquals("/user/logs", optionRecord.directory());
     }
 
-    record OptionRecord(@Option("-l") boolean logging, @Option("-p") int port, @Option("-d") String directory) {
+    record MultiRecord(@Option("l") boolean logging, @Option("p") int port, @Option("d") String directory) {
     }
 }
